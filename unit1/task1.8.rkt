@@ -16,4 +16,4 @@
 (define (sqrt x)
   (sqrt-iter 0 1.0 x))
 
-(display (sqrt 1000))
+(display (sqrt 8))

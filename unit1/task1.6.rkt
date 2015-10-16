@@ -35,4 +35,4 @@
          x guess) guess) 2))
 (define (sqrt x)
   (sqrt-iter 1.0 x))
-(display (sqrt 10000000000000000000000000000))
+(display (sqrt 2))
