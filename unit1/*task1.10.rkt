@@ -7,8 +7,7 @@
                  (A x (- y 1))))))
 ;表示2的十次方
 (display (A 1 10))
-(newline)
-;
+(newline);
 (display (A 2 4))
 (newline)
 (display (A 2 3))
