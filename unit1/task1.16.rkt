@@ -1,0 +1,10 @@
+#lang r5rs
+(define (pow a n)
+  (define (square x)
+    (* x x))
+  (define (iter sum num)
+    (cond ((= num 1) (iter (* sum a) (- num 1)))
+          ((= num 0) sum)
+          (else (iter (* sum (square a)) (- num 2)))))
+  (iter 1 n))
+(display (pow 2 4))
