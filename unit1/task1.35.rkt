@@ -1,0 +1,17 @@
+#lang racket
+(define (abs x)
+  (if (> x 0) x
+      (- 0 x)))
+(define tolerance 0.0001)
+(define (gold x)
+  (define (fn x)
+    (+ (/ 1.0 x) 1.0))
+  (define (close-enough? v1 v2)
+    (< (abs (- v1 v2)) tolerance))
+  (define (try guess fn)
+      (let ((better-value (fn guess )))
+      (cond ((close-enough? guess better-value) better-value)
+            (else (try better-value fn))))
+    )
+  (try x fn))
+(gold 1)
