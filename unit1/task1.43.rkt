@@ -9,3 +9,4 @@
 (define (suqare x)
   (* x x))
 ((repeated suqare 2) 5)
+(provide repeated)

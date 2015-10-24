@@ -1,0 +1,16 @@
+#lang racket
+(require "task1.43.rkt")
+(newline)
+(define dx 0.000001)
+(define (cube x)
+  (* x x x))
+(define (smooth f)
+  (lambda (x)
+          (/ (+ (f (- x dx)) (f x) (f (+ x dx))) 3)))
+
+(define (repeated-smooth n)
+  (repeated smooth n))
+(newline)
+((smooth cube) 10)
+(newline)
+(((repeated-smooth 10) cube) 10)
