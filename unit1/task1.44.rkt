@@ -1,7 +1,11 @@
 #lang racket
-(require "task1.43.rkt")
-(newline)
 (define dx 0.000001)
+(define (repeated fn n)
+  (lambda (x)
+          (define (iter k n result)
+            (cond ((= k n) result)
+                  (else (iter (+ k 1) n (fn result)))))
+          (iter 0 n x)))
 (define (cube x)
   (* x x x))
 (define (smooth f)
