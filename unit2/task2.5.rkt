@@ -1,0 +1,16 @@
+#lang racket
+;求幂
+(define (power base n)
+  (define (iter i n result)
+    (cond ((= i n) result)
+          (else (iter (+ i 1) n (* result base)))))
+  (iter 0 n 1))
+(define (cons a b)
+  (lambda (f)
+  (f (power 2 a) (power 3 b))))
+(define (car z)
+  (z (lambda (a b) a)))
+(define (cdr z)
+  (z (lambda (a b) b)))
+(car (cons 2 2))
+(cdr (cons 2 2))
