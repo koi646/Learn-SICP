@@ -1,0 +1,27 @@
+#lang racket
+;定义点
+(define (make-point x y) (cons x y))
+(define (x-point point) (car point))
+(define (y-point point) (cdr point))
+;打印点的坐标
+(define (print-point p)
+  (newline)
+  (display "(")
+  (display (x-point p))
+  (display ",")
+  (display (y-point p))
+  (display ")"))
+;定义线段
+(define (make-segment start end) (cons start end))
+(define (start-segment segment) (car segment))
+(define (end-segment segment) (cdr segment))
+(define (midpoint-segment segment)
+  (define (midpoint p1 p2)
+    (define (average a b)
+      (/ (+ a b) 2))
+    (make-point (average (x-point p1) (x-point p2)) (average (y-point p1) (y-point p2))))
+  (midpoint (start-segment segment) (end-segment segment)))
+(define start (make-point 1 1))
+(define end (make-point 2 2))
+(define segment (make-segment start end))
+(print-point (midpoint-segment segment))
