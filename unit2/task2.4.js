@@ -1,14 +1,16 @@
 /*
 可以用闭包来模拟python的元组
 */
-function cons(x, y) {
+function cons() {
+  var elemtns = arguments;
   return function (f) {
-    return f(x, y);
+    return f(elemtns);
   }
 }
-function car(z) {
-  return z(function(p, q) {
-    return p;
+function get(z,n) {
+  return z(function(elemtns) {
+    return elemtns[n];
   })
 };
-console.log(car(cons(1,2)));
+var b = cons(1,2,3);
+console.log(get(cons(1,23,4,5,6),3));
