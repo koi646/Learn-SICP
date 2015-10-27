@@ -1,0 +1,12 @@
+#lang racket
+(define (make-interval a b) (cons a b))
+(define (upper-bound div-interval) (cdr div-interval))
+(define (lower-bound div-interval) (car div-interval))
+(define (sub-interval x y)
+  (let ((p1 (- (lower-bound x) (lower-bound y)))
+        (p2 (- (upper-bound x) (upper-bound y))))
+    (make-interval (min p1 p2)
+                   (max p1 p2))))
+(define a (make-interval 1 3))
+(define b (make-interval 5 9))
+(sub-interval a b)
