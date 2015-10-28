@@ -1,0 +1,11 @@
+#lang racket
+(define (make-center-percent point deviation)
+  (cond ((> point 0) (cons (* point (- 1 deviation)) (* point (+ 1 deviation))))
+        (else (cons ((* point (+ 1 deviation)) (* point (- 1 deviation)))))))
+(define (percent center-percent)
+  (- 1 (/ (car center-percent) (/ (+ (car center-percent) (cdr center-percent)) 2))))
+(define (center center-percent)
+  (/ (+ (car center-percent) (cdr center-percent)) 2))
+(make-center-percent 5 0.1)
+(center (make-center-percent 5 0.1))
+(percent (make-center-percent 5 0.1))
