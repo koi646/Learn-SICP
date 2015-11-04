@@ -1,5 +1,6 @@
 #lang racket
-
+;以下是按照问题 d 的表示方式写的
+;如果把make-mobile和make-branch不用cons用list的话 程序需要修改的只有在let的时候修改一下就可以了
 (define (make-mobile left right)
   (cons left right))
 (define (make-branch length structure)
@@ -21,8 +22,21 @@
             ((and (pair? node-right) (not (pair? node-left))) (+ weight (iter node-right 0) node-left))
             (else (+ weight node-left node-right)))))
   (iter mobile 0))
+;一个🌰
 (define mobile (make-mobile (make-branch 10 25)
                             (make-branch 5 20)))
+;两个🌰
 (define lsl (make-mobile (make-branch 10 mobile)
                          (make-branch 10 mobile)))
 (total-weight lsl)
+;判断是否平衡
+
+(define (balance? mobile)
+  (define (iter items weight)
+    (let ((node-right (branch-structure (right-branch items)))
+          (node-left (branch-structure (left-branch items))))
+      (cond ((and (pair? node-left) (pair? node-right)) (+ weight (iter node-left 0) (iter node-right 0)))
+            ((and (pair? node-left) (not (pair? node-right))) (+ weight (iter node-left 0) node-right))
+            ((and (pair? node-right) (not (pair? node-left))) (+ weight (iter node-right 0) node-left))
+            (else (+ weight node-left node-right)))))
+(iter mobile 0))
